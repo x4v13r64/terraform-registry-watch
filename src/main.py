@@ -60,7 +60,6 @@ async def download_repository(session, repository,
             async with session.get(url) as response:
                 if response.status == 200:
                     LOGGER.debug(f'Downloading repository {repository} to \"{tmp_location}\"')
-                    # z = zipfile.ZipFile(io.BytesIO(response.content))
                     content = await response.read()
                     z = zipfile.ZipFile(io.BytesIO(content))
                     z.extractall(tmp_location)
